@@ -35,7 +35,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['form'];
+    protected $helpers = ['form','general'];
 
     protected $currentUser = null;
     protected $auth = null;
@@ -68,10 +68,5 @@ abstract class BaseController extends Controller
         $this->data['currentUser'] = $this->currentUser;
     }
 
-    protected function renderView($content = '', $data = [])
-    {
-        $data['content'] = $content;
-
-        return view('admin/layout', $data);
-    }
+   
 }

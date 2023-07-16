@@ -1,3 +1,7 @@
+<?= $this->extend('admin/layout') ?>
+
+<?= $this->section('content') ?>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<div class="container-fluid">
@@ -21,7 +25,7 @@
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-5">
-				<?= view('admin/categories/form') ?>
+				<?= $this->include('admin/categories/form') ?>
 			</div>
 		  	<div class="col-7">
 				<div class="card">
@@ -76,3 +80,5 @@
 	</div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+<?= $this->endSection() ?>

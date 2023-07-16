@@ -13,7 +13,7 @@ class CategoryModel extends Model
     protected $returnType       = 'App\Entities\CategoriesEntity';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name' , 'slug'];
+    protected $allowedFields    = ['name' , 'slug', 'parent_id'];
 
     // Dates
     protected $useTimestamps = false;
@@ -25,7 +25,7 @@ class CategoryModel extends Model
     // Validation
     
     protected $validationRules      = [
-        'name'	=> 'required|is_unique[categories.name,id,{id}]|min_length[3]',
+        'name'	=> 'required|min_length[3]',
     ];
     
     protected $validationMessages   = [];
@@ -34,7 +34,7 @@ class CategoryModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['generateSlug'];
     protected $afterInsert    = [];
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
@@ -42,4 +42,46 @@ class CategoryModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function generateSlug(array $data)
+	{
+		$slug = strtolower(url_title($data['data']['name']));
+		$name = trim($data['data']['name']);
+
+		$category = $this->where('name', $name)->orderBy('id', 'DESC')->first();
+		if ($category) {
+			$slugs = explode('-', $category->slug);
+			$slugNumber = !(empty($slugs[1])) ? ((int)$slugs[1] + 1) : 1;
+			$slug = $slug. '-' .$slugNumber;
+		}
+
+		$data['data']['slug'] = $slug;
+
+		return $data;
+	}
+
+    public function getParentOptions($exceptCategoryId = null)
+	{
+		$categories = [];
+
+		$categoryModel = $this;
+		if ($exceptCategoryId) {
+			$categoryModel->where('id !=', $exceptCategoryId);
+		}
+
+        if ($results = $categoryModel->findAll()) {
+            foreach ($results as $result) {
+                $categories[] = [
+                    'id' => $result->id,
+                    'name' => $result->name,
+                    'slug' => $result->slug,
+                    'parent_id' => $result->parent_id,
+                    'created_at' => $result->created_at,
+                    'updated_at' => $result->updated_at,
+                ];
+            }
+		}
+
+		return $categories;
+	}
 }

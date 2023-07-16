@@ -28,21 +28,31 @@ class CategoriesController extends BaseController
             $this->data['category'] = $category;
         }
         $this->getCategories();
+        $this->getParentOptions($categoryId);
 
-        return $this->renderView('admin/categories/index', $this->data);
+        // return $this->renderView('admin/categories/index', $this->data);
+
+        return view('admin/categories/index', $this->data);
     }
     public function getCategories()
     {
         $this->data['categories'] = $this->categoryModel->paginate($this->perPage, 'bootstrap');
         $this->data['pager'] = $this->categoryModel->pager;
     }
+    
+    private function getParentOptions($exceptCategoryId = null)
+    {
+        $this->data['parentOptions'] = $this->categoryModel->getParentOptions($exceptCategoryId);
+    }
 
     public function store()
     {
         $params =[
             'name' => $this->request->getVar('name'),
+            'parent_id' => $this->request->getVar('parent_id'),
         ];
-        $params['slug'] = strtolower(url_title($params['name']));
+        
+        $this->data['selectParentId'] = $params['parent_id'];
 
         if($this->categoryModel->save($params))
         {
@@ -52,8 +62,10 @@ class CategoriesController extends BaseController
         else 
         {
             $this->getCategories();
+            $this->getParentOptions();
             $this->data['errors'] = $this->categoryModel->errors();
-            return $this->renderView('admin/categories/index', $this->data);
+           
+            return view('admin/categories/index', $this->data);
         }
     }
 
@@ -62,9 +74,10 @@ class CategoriesController extends BaseController
         $params = [
 			'id' => $id,
 			'name' => $this->request->getVar('name'),
+            'parent_id' => $this->request->getVar('parent_id'),
 		];
-		$params['slug'] = strtolower(url_title($params['name']));
-
+		
+        $this->data['selectParentId'] = $params['parent_id'];
 		if ($this->categoryModel->save($params)) {
 			$this->session->setFlashdata('success', 'Category has been updated!');
 			return redirect()->to('/admin/categories');
@@ -73,7 +86,9 @@ class CategoriesController extends BaseController
         {
 			$this->getCategories();
 			$this->data['errors'] = $this->categoryModel->errors();
-			return $this->renderView('admin/categories/index', $this->data);
+			return view('admin/categories/index', $this->data);
+
+            
 		}
     }
 

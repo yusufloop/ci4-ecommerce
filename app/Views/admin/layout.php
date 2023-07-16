@@ -42,21 +42,21 @@
         </div>
 
         <!-- header  -->
-        <?= view('admin/shared/header') ?>
+        <?= $this->include('admin/shared/header') ?>
 
         <!-- Sidebar -->
-        <?= view('admin/shared/sidebar') ?>
+        <?= $this->include('admin/shared/sidebar') ?>
 
         <!-- Content Wrapper -->
         <div class="content-wrapper">
             <!-- content  -->
-            <?= view($content) ?>
+            <?= $this->renderSection('content') ?>
         </div>
 
         <!-- /.content-wrapper -->
 
         <!-- footer  -->
-        <?= view('admin/shared/footer') ?>
+        <?= $this->include('admin/shared/footer') ?>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
