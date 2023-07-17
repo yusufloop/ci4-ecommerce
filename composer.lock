@@ -722,12 +722,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "bf35465b14a46f592a314e77c2aba4ded0c04138"
+                "reference": "9307a1574d0697e2c71f2eecb964e05f67d2d925"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/bf35465b14a46f592a314e77c2aba4ded0c04138",
-                "reference": "bf35465b14a46f592a314e77c2aba4ded0c04138",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9307a1574d0697e2c71f2eecb964e05f67d2d925",
+                "reference": "9307a1574d0697e2c71f2eecb964e05f67d2d925",
                 "shasum": ""
             },
             "require": {
@@ -792,7 +792,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-06T09:16:17+00:00"
+            "time": "2023-07-16T11:22:33+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1041,12 +1041,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d64ea7dbc7aa495c64fd035298302c48ce27be18"
+                "reference": "b04ba820dad65cf57a837ce51194e6b782fc0f9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d64ea7dbc7aa495c64fd035298302c48ce27be18",
-                "reference": "d64ea7dbc7aa495c64fd035298302c48ce27be18",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b04ba820dad65cf57a837ce51194e6b782fc0f9a",
+                "reference": "b04ba820dad65cf57a837ce51194e6b782fc0f9a",
                 "shasum": ""
             },
             "require": {
@@ -1136,7 +1136,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-10T06:39:22+00:00"
+            "time": "2023-07-16T11:27:16+00:00"
         },
         {
             "name": "psr/container",

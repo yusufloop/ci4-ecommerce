@@ -32,15 +32,25 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 
-$routes->group('admin', function($routes){
+$routes->group('admin', ['filter'=> 'admin-auth:admin,operator'] , function($routes){
 	$routes->get('dashboard', 'Admin\DashboardController::index');
 	
-	$routes->get('categories', 'Admin\CategoriesController::index');
-	$routes->get('categories/(:num)', 'Admin\CategoriesController::index/$1');
-	$routes->post('categories', 'Admin\CategoriesController::store');
-	$routes->put('categories/(:num)', 'Admin\CategoriesController::update/$1');
-	$routes->delete('categories/(:num)', 'Admin\CategoriesController::destroy/$1');
+	$routes->group('categories', function($routes){
+		$routes->get('categories', 'Admin\CategoriesController::index');
+		$routes->get('categories/(:num)', 'Admin\CategoriesController::index/$1');
+		$routes->post('categories', 'Admin\CategoriesController::store');
+		$routes->put('categories/(:num)', 'Admin\CategoriesController::update/$1');
+		$routes->delete('categories/(:num)', 'Admin\CategoriesController::destroy/$1');
+	});
 
+	
+
+	$routes->get('attributes', 'Admin\AttributesController::index');
+	$routes->get('attributes/(:num)', 'Admin\AttributesController::index/$1');
+	$routes->post('attributes', 'Admin\AttributesController::store');
+	$routes->put('attributes/(:num)', 'Admin\AttributesController::update/$1');
+	$routes->delete('attributes/(:num)', 'Admin\AttributesController::destroy/$1');
+	
 
 });
 

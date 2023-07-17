@@ -10,6 +10,6 @@ class DashboardController extends BaseController
     {
         $this->data['pageTitle'] ='Dashboard Pages';
 
-        return $this->renderView('admin/dashboard/index', $this->data);
+        return view('admin/dashboard/index', $this->data);
     }
 }
