@@ -36,14 +36,11 @@ $routes->group('admin', ['filter'=> 'admin-auth:admin,operator'] , function($rou
 	$routes->get('dashboard', 'Admin\DashboardController::index');
 	
 	
-		$routes->get('categories', 'Admin\CategoriesController::index');
-		$routes->get('categories/(:num)', 'Admin\CategoriesController::index/$1');
-		$routes->post('categories', 'Admin\CategoriesController::store');
-		$routes->put('categories/(:num)', 'Admin\CategoriesController::update/$1');
-		$routes->delete('categories/(:num)', 'Admin\CategoriesController::destroy/$1');
-
-
-	
+	$routes->get('categories', 'Admin\CategoriesController::index');
+	$routes->get('categories/(:num)', 'Admin\CategoriesController::index/$1');
+	$routes->post('categories', 'Admin\CategoriesController::store');
+	$routes->put('categories/(:num)', 'Admin\CategoriesController::update/$1');
+	$routes->delete('categories/(:num)', 'Admin\CategoriesController::destroy/$1');
 
 	$routes->get('attributes', 'Admin\AttributesController::index');
 	$routes->get('attributes/(:num)', 'Admin\AttributesController::index/$1');
@@ -51,7 +48,12 @@ $routes->group('admin', ['filter'=> 'admin-auth:admin,operator'] , function($rou
 	$routes->put('attributes/(:num)', 'Admin\AttributesController::update/$1');
 	$routes->delete('attributes/(:num)', 'Admin\AttributesController::destroy/$1');
 	
-
+	$routes->get('attribute-options', 'Admin\AttributeOptionsController::index');
+	$routes->get('attribute-options/(:num)', 'Admin\AttributeOptionsController::index/$1');
+	$routes->get('attribute-options/(:num)/(:num)', 'Admin\AttributeOptionsController::index/$1/$2');
+	$routes->post('attribute-options', 'Admin\AttributeOptionsController::store');
+	$routes->put('attribute-options/(:num)/(:num)', 'Admin\AttributeOptionsController::update/$1/$2');
+	$routes->delete('attribute-options/(:num)', 'Admin\AttributeOptionsController::destroy/$1');
 });
 
 
