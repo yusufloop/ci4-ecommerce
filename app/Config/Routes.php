@@ -35,13 +35,13 @@ $routes->get('/', 'Home::index');
 $routes->group('admin', ['filter'=> 'admin-auth:admin,operator'] , function($routes){
 	$routes->get('dashboard', 'Admin\DashboardController::index');
 	
-	$routes->group('categories', function($routes){
+	
 		$routes->get('categories', 'Admin\CategoriesController::index');
 		$routes->get('categories/(:num)', 'Admin\CategoriesController::index/$1');
 		$routes->post('categories', 'Admin\CategoriesController::store');
 		$routes->put('categories/(:num)', 'Admin\CategoriesController::update/$1');
 		$routes->delete('categories/(:num)', 'Admin\CategoriesController::destroy/$1');
-	});
+
 
 	
 
